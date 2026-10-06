@@ -1,0 +1,60 @@
+{
+  "artifact": "demo.mp4",
+  "duration_seconds": 66.0,
+  "width": 1280,
+  "height": 720,
+  "fps": "24/1",
+  "video_codec": "h264",
+  "pixel_format": "yuv420p",
+  "frame_count": 1584,
+  "audio_streams": 0,
+  "audio_description": "Silent; no narration or music.",
+  "size_bytes": 901989,
+  "sha256": "58091d05d82f504d3fe9977fb8698b7aa077cf18c45b1189b7b8db20b8ea6b0c",
+  "source_example_file": "top-k-maintenance.html",
+  "source_example_sha256": "5f4e65ba9e8b0cf1b60f3ee14040c4165dc358ce0271aec8ad024258d6252093",
+  "method": "Original Pillow geometric animation with FFmpeg encoding; same fixture as the completed HTML example. Not a screen capture.",
+  "passed_checks": [
+    "Fixture coverage at K=0/3/6/7/8",
+    "Exact fixed score sequence and maintenance intervals",
+    "ffprobe dimensions, duration, frame rate, frame count, codec, pixel format and silent audio state",
+    "Full video decode with ffmpeg returned exit code 0",
+    "MP4 fast-start: moov atom precedes mdat"
+  ],
+  "frame_review": {
+    "decoded_samples_seconds": [
+      3,
+      11,
+      20,
+      26,
+      31,
+      42,
+      48,
+      52,
+      62
+    ],
+    "visual_review": "Passed: selected source keyframes and final decoded frames show readable Chinese labels, stable ranking, correct K=3/6/7 evidence states, readable captions, explicit simulation and no-benchmark limits. No visible clipping in reviewed frames.",
+    "source_keyframes_reviewed_seconds": [
+      3,
+      11,
+      20,
+      31,
+      42,
+      52,
+      62
+    ],
+    "final_decoded_frames_reviewed_seconds": [
+      26,
+      42,
+      48,
+      52,
+      62
+    ]
+  },
+  "limitations": [
+    "Synthetic ranking, titles, scores and maintenance periods; not real equipment advice.",
+    "Fixed query and rank; filtering, approximate search, chunking and context truncation are not modeled.",
+    "No learning-effect or skill-superiority claim.",
+    "Companion HTML was not browser-rendered in this environment."
+  ]
+}

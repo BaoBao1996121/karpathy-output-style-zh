@@ -1,0 +1,18 @@
+{
+  "method": "Node vm with minimal DOM stand-in; does not verify browser rendering, native keyboard behavior, or actual network traffic",
+  "manual_steps": "passed",
+  "slider_values_1_to_8": "passed",
+  "autoplay_pause_speed_terminal_stop": "passed",
+  "replay": "passed",
+  "slider_pauses_playback": "passed",
+  "background_tab_pauses_playback": "passed",
+  "jump_to_step": "passed",
+  "static_no_external_assets": "passed",
+  "static_no_network_API_calls": "passed",
+  "content_security_policy": "connect-src none; default-src none; inline script/style only",
+  "responsive_and_reduced_motion_css": "present; not browser-verified",
+  "browser_validation": "not performed by this script; the original browser attempt was blocked by environment socket permissions",
+  "model_version": "unavailable",
+  "html_bytes": 18398,
+  "node": "v24.19.0"
+}

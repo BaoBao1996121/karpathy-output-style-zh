@@ -1,0 +1,64 @@
+{
+  "evaluation": "One qualitative upstream-skill trial; no superiority or benchmark claim",
+  "source_access_date_utc": "2026-10-05",
+  "invocation_method": "Downloaded and read the actual upstream clear-writing/SKILL.md, explain-webpage/SKILL.md, and required clear-writing reference, then followed their instructions. No plugin installation or slash-command invocation. No upstream script execution. Existing Python, Node, Chromium, and Playwright were used without dependency installation.",
+  "model_version": "Unavailable; not inferred",
+  "upstream_ref": "main, exact fetched content identified by SHA-256 below; no immutable commit ID recorded",
+  "cases": [
+    {
+      "id": 1,
+      "prompt": "用三句话解释为什么召回率高，最终答案仍可能错。",
+      "output": "召回率高，只说明检索找回了大部分相关资料。少数漏掉的资料可能恰好包含关键条件或例外。即使资料齐全，模型也可能误读、混淆或推理出错。",
+      "checks": {
+        "sentences": 3
+      }
+    },
+    {
+      "id": 2,
+      "prompt": "可视化讲一下：为什么top-k从3加到6，还是可能漏掉B型号的维护周期？给我能本地打开、逐步播放的小HTML，不要联网，不要发布。",
+      "artifact": "top-k-explainer.html",
+      "opening_instruction": "将 HTML 文件保存到本地，双击用浏览器打开；点“下一步”或“自动播放”。无需联网。",
+      "scenario": "Fixed synthetic ranking, B maintenance-cycle evidence at rank 8; K=3 and K=6 miss it, K=8 contains it. All model names, scores, and maintenance periods are illustrative, not real equipment guidance."
+    },
+    {
+      "id": 3,
+      "prompt": "把“向量检索能保证找到所有正确答案，所以只要调大K就不会漏答”改得简短准确。",
+      "output": "向量检索不保证找全证据；调大 K 可能减少漏检，但不能保证不漏答。"
+    }
+  ],
+  "upstream_sources": [
+    {
+      "url": "https://raw.githubusercontent.com/ashryaagr/karpathy-output-style/main/skills/clear-writing/SKILL.md",
+      "file": "upstream-clear-writing-SKILL.md",
+      "sha256": "34fa8ee9433b023d4dd4eddd8aa03ac377653a4995587d1c7b8b1665f0200273"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/ashryaagr/karpathy-output-style/main/skills/explain-webpage/SKILL.md",
+      "file": "upstream-explain-webpage-SKILL.md",
+      "sha256": "3da805b7502234a08f6b6f4cf13ee528060c1ef1d55f5392ab0516bdc18de459"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/ashryaagr/karpathy-output-style/main/skills/clear-writing/references/asd-ste100.md",
+      "file": "upstream-asd-ste100-reference.md",
+      "sha256": "4aefbca9064d1f405017600c9e9697af6837a2d1b14d7b4425dd462435edcaa6"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/ashryaagr/karpathy-output-style/main/LICENSE",
+      "file": "UPSTREAM-LICENSE.txt",
+      "sha256": "d6083a37ea159b0797b48529b530f7b85a811f80e24e6774bea4a9a60ffa58a2"
+    }
+  ],
+  "technical_reference": "https://www.elastic.co/docs/solutions/search/vector/knn",
+  "checks_file": "logic-checks.json",
+  "limitations": [
+    "Browser launch was blocked by environment socket permissions. No screenshots or successful browser rendering checks were produced.",
+    "Node logic checks use a minimal DOM stand-in; they do not verify appearance, actual browser network traffic, or native keyboard behavior.",
+    "Narrow-screen and reduced-motion styles are present but were not browser-verified.",
+    "Chinese prose follows general clarity principles; it is not verified ASD-STE100 English compliance.",
+    "No real retrieval model or equipment dataset was run.",
+    "This is one qualitative trial under the host environment instructions, not a blinded or controlled comparison."
+  ],
+  "publication": "This report records a pre-publication local trial. Its artifacts are now included for review.",
+  "license": "Original output generated for this task; upstream MIT copyright and permission notice retained in the source-copy folder and HTML attribution comment.",
+  "artifact_sha256": "8fc79cf33d4ad8a96fc4dd090d6a2716d66789ef24d31ef7b303dbd2773b4861"
+}

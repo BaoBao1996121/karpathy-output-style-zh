@@ -1,0 +1,90 @@
+{
+  "schema": 1,
+  "synthetic": true,
+  "query": "A、B 型号的维护周期分别是多少？",
+  "source_file": "top-k-maintenance.html",
+  "source_sha256": "5f4e65ba9e8b0cf1b60f3ee14040c4165dc358ce0271aec8ad024258d6252093",
+  "scope": "Fixed synthetic ranking; top-K slicing only. Not maintenance advice or a benchmark.",
+  "ranking": [
+    {
+      "rank": 1,
+      "title": "A 型号 · 维护说明",
+      "description": "周期：每 6 个月一次",
+      "score": "0.93",
+      "display": "A 型号 · 维护说明",
+      "slots": [
+        "A"
+      ],
+      "period_months": 6
+    },
+    {
+      "rank": 2,
+      "title": "A 型号 · 保养问答",
+      "description": "重复说明 A 的 6 个月周期",
+      "score": "0.90",
+      "display": "A 型号 · 保养问答",
+      "slots": [
+        "A"
+      ],
+      "period_months": 6
+    },
+    {
+      "rank": 3,
+      "title": "A 型号 · 例行维护指南",
+      "description": "仍然是 A 的周期证据",
+      "score": "0.87",
+      "display": "A 型号 · 例行维护指南",
+      "slots": [
+        "A"
+      ],
+      "period_months": 6
+    },
+    {
+      "rank": 4,
+      "title": "通用维护规范",
+      "description": "清洁和检查流程，无型号周期",
+      "score": "0.84",
+      "display": "通用维护规范（无周期）",
+      "slots": [],
+      "period_months": null
+    },
+    {
+      "rank": 5,
+      "title": "B 型号 · 产品概览",
+      "description": "有 B 的名称，没有维护周期",
+      "score": "0.81",
+      "display": "B 型号 · 产品概览（无周期）",
+      "slots": [],
+      "period_months": null
+    },
+    {
+      "rank": 6,
+      "title": "B 型号 · 安全操作",
+      "description": "有 B 的名称，没有维护周期",
+      "score": "0.78",
+      "display": "B 型号 · 安全操作（无周期）",
+      "slots": [],
+      "period_months": null
+    },
+    {
+      "rank": 7,
+      "title": "B 型号 · 年度点检表",
+      "description": "B 的周期证据：每 12 个月一次",
+      "score": "0.73",
+      "display": "B 型号 · 年度点检表（12个月）",
+      "slots": [
+        "B"
+      ],
+      "period_months": 12
+    },
+    {
+      "rank": 8,
+      "title": "B 型号 · 配件目录",
+      "description": "零件清单，没有维护周期",
+      "score": "0.66",
+      "display": "B 型号 · 配件目录（无周期）",
+      "slots": [],
+      "period_months": null
+    }
+  ]
+}

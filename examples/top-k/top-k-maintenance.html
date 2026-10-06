@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data:; connect-src 'none'; font-src 'none'; base-uri 'none'; form-action 'none'">
+<title>K 加大了，为什么还漏了 B？</title>
+<style>
+:root{--ink:#183332;--muted:#526966;--paper:#f5f7f2;--line:#d9e2d9;--green:#146c51;--green-bg:#e9f6ed;--orange:#99551d;--orange-bg:#fff0de;--violet:#6950a1;--violet-bg:#f1edfa}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:system-ui,-apple-system,"Noto Sans CJK SC","Microsoft YaHei",sans-serif;line-height:1.6}button,input{font:inherit}button{cursor:pointer}button:disabled{cursor:default;opacity:.4}button:focus-visible,input:focus-visible{outline:3px solid #2e72bc;outline-offset:4px}main{max-width:1140px;margin:auto;padding:38px 28px 26px}.eyebrow{font-size:13px;letter-spacing:.07em;color:var(--green);font-weight:750}h1{font-size:clamp(25px,3.5vw,40px);line-height:1.25;margin:9px 0 12px;letter-spacing:-.025em}p{margin:0}.lede{font-size:17px;max-width:850px}.small{font-size:12px;color:var(--muted)}.notice{margin-top:12px}.input{display:flex;gap:14px;align-items:flex-start;margin:23px 0 20px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 19px}.tag{flex-shrink:0;font-size:12px;font-weight:750;color:var(--green);border:1px solid #b4d4c0;border-radius:6px;padding:2px 7px;margin-top:3px}.input strong{font-size:18px}.input p{font-size:13px;color:var(--muted);margin-top:3px}.story{border-top:1px solid var(--line);padding-top:17px}.steps{display:flex;gap:6px;flex-wrap:wrap;margin:0 0 18px}.step-button{border:1px solid var(--line);background:transparent;color:var(--muted);border-radius:100px;padding:5px 12px;font-size:12px}.step-button[aria-current="step"]{background:var(--ink);color:white;border-color:var(--ink)}.explanation{min-height:115px;margin-bottom:14px}.step-label{color:var(--green);font-size:12px;font-weight:750}.explanation h2{font-size:23px;line-height:1.35;margin:5px 0 7px}.explanation p{max-width:950px;font-size:15px}.board{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:20px;align-items:start}.panel{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px}.panel-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:5px}.panel h3{font-size:15px;margin:0}.kbadge{background:var(--paper);padding:2px 9px;border-radius:6px;font-size:13px;font-weight:750;white-space:nowrap}.subline{font-size:12px;color:var(--muted);margin-bottom:14px}.column-labels{display:grid;grid-template-columns:25px minmax(0,1fr) 44px 62px;gap:8px;font-size:11px;color:var(--muted);padding:0 10px 5px}.column-labels span:last-child{text-align:right}.rows{display:grid;gap:6px}.row{display:grid;grid-template-columns:25px minmax(0,1fr) 44px 62px;gap:8px;align-items:center;background:#f6f8f5;border:1px solid #e3e9e1;border-radius:9px;padding:9px 10px;position:relative;transition:background .3s,border-color .3s}.row.selected{background:var(--green-bg);border-color:#8abc9a}.row.newly{border-color:var(--orange);background:#fff8ed}.row.target{border:2px solid var(--violet);padding:8px 9px;background:var(--violet-bg)}.row.cutoff{margin-bottom:13px}.row.cutoff:after{content:attr(data-cutoff);position:absolute;bottom:-16px;left:5px;right:5px;height:15px;border-top:2px dashed var(--orange);color:var(--orange);background:white;text-align:right;font-size:10px;line-height:12px}.rank{font-size:13px;font-weight:750;color:var(--muted)}.doc-title{font-size:13px;font-weight:650;line-height:1.4}.doc-desc{font-size:11px;color:var(--muted);margin-top:2px;line-height:1.4}.score{font-size:12px;color:var(--muted);text-align:right;font-variant-numeric:tabular-nums}.status{font-size:10px;text-align:right;color:var(--muted);white-space:nowrap}.selected .status{color:var(--green);font-weight:750}.newly .status{color:var(--orange)}.target .status{color:var(--violet);font-weight:750}.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:11px;color:var(--muted);margin-top:16px}.legend span:before{content:"";display:inline-block;width:9px;height:9px;margin-right:5px;border:1px solid var(--green);background:var(--green-bg)}.legend span:nth-child(2):before{background:var(--orange-bg);border-color:var(--orange)}.legend span:nth-child(3):before{background:var(--violet-bg);border-color:var(--violet)}.evidence{display:grid;gap:12px;margin:16px 0}.evidence-card{background:#f6f8f5;border:1px solid var(--line);border-radius:11px;padding:15px}.evidence-top{display:flex;align-items:center;justify-content:space-between;font-size:13px}.evidence-top strong{font-size:15px}.evidence-state{font-size:11px;color:var(--muted)}.evidence-value{font-size:29px;line-height:1.3;font-weight:750;margin:7px 0}.evidence-desc{font-size:12px;color:var(--muted)}.evidence-card.found{background:var(--green-bg);border-color:#a4ceb0}.evidence-card.missing{background:var(--orange-bg);border-color:#deb488}.evidence-card.missing .evidence-value{color:var(--orange);font-size:24px}.conclusion{padding:13px 0 0;border-top:1px solid var(--line);font-size:14px}.conclusion strong{display:block;margin-bottom:4px}.conclusion p{color:var(--muted);font-size:13px}.controls{display:flex;flex-wrap:wrap;align-items:center;gap:9px;margin-top:22px}.controls button{background:white;border:1px solid #b8c6b9;border-radius:8px;padding:7px 13px;font-size:13px}.controls .primary{background:var(--ink);border-color:var(--ink);color:white;min-width:103px}.seek{display:flex;align-items:center;gap:9px;flex:1;min-width:200px;margin-left:5px}.seek label{font-size:12px;white-space:nowrap}.seek input{width:100%;accent-color:var(--green);min-width:50px}.counter{font-size:12px;white-space:nowrap;min-width:30px}.hint{font-size:11px;color:var(--muted);margin-top:8px}.takeaway{margin-top:24px;border-left:3px solid var(--green);padding:0 0 0 13px;font-size:14px}.takeaway strong{display:block;margin-bottom:3px}.takeaway p{font-size:12px;color:var(--muted)}footer{font-size:11px;color:var(--muted);margin-top:22px;border-top:1px solid var(--line);padding-top:12px}.sr-only{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}@media(max-width:760px){main{padding:23px 16px}.board{grid-template-columns:1fr}.panel{padding:16px}.explanation{min-height:0;margin-bottom:18px}.input{padding:13px;gap:9px}.input strong{font-size:16px}.step-button{padding:5px 9px}.controls{gap:7px}.seek{flex-basis:100%;margin:6px 0 0}.row,.column-labels{grid-template-columns:20px minmax(0,1fr) 35px 53px;gap:5px}.row{padding:9px 7px}.row.target{padding:8px 6px}.doc-title{font-size:12px}.status{font-size:9px}}@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<main>
+<header>
+<div class="eyebrow">检索机制 · 离线分步演示</div>
+<h1>K 从 3 加到 6，为什么还漏了 B？</h1>
+<p class="lede">因为 K 只决定取排名前几条，不保证每个型号所需的证据都在里面。</p>
+<p class="small notice">本页所有文档、相似度和维护周期均为教学用模拟数据，不能用于真实设备维护。</p>
+</header>
+<section class="input" aria-label="贯穿示例的问题">
+<span class="tag">输入</span>
+<div><strong>“A、B 型号的维护周期分别是多少？”</strong><p>目标：分别找到 A 和 B 的周期证据。只出现“B 型号”几个字还不够。</p></div>
+</section>
+<section class="story" aria-label="六步讲解">
+<nav class="steps" aria-label="选择讲解步骤"></nav>
+<div class="explanation" aria-live="polite" aria-atomic="true">
+<div class="step-label" id="step-label"></div><h2 id="step-title"></h2><p id="step-body"></p>
+</div>
+<div class="board">
+<section class="panel" aria-label="模拟检索排名">
+<div class="panel-head"><h3>① 同一问题下的固定排名</h3><span class="kbadge" id="k-badge"></span></div>
+<p class="subline">为了看清漏在哪里，这里展示全部 8 条；模型只收到标为“入选”的条目。</p>
+<div class="column-labels" aria-hidden="true"><span>排名</span><span>文档 / 含有什么</span><span>相似度</span><span>状态</span></div>
+<div class="rows" id="rows" role="list"></div>
+<div class="legend"><span>入选</span><span>K=6 新增</span><span>B 的周期证据</span></div>
+</section>
+<section class="panel" aria-label="模型收到的证据">
+<div class="panel-head"><h3>② 入选条目能支持什么？</h3></div>
+<p class="subline">按型号检查证据，不用条目总数代替答案覆盖。</p>
+<div class="evidence">
+<div class="evidence-card" id="card-a"><div class="evidence-top"><strong>A 型号</strong><span class="evidence-state" id="state-a"></span></div><div class="evidence-value" id="value-a"></div><p class="evidence-desc" id="desc-a"></p></div>
+<div class="evidence-card" id="card-b"><div class="evidence-top"><strong>B 型号</strong><span class="evidence-state" id="state-b"></span></div><div class="evidence-value" id="value-b"></div><p class="evidence-desc" id="desc-b"></p></div>
+</div>
+<div class="conclusion"><strong id="result-title"></strong><p id="result-body"></p></div>
+</section>
+</div>
+<div class="controls" aria-label="播放控制">
+<button class="primary" type="button" id="play" aria-pressed="false">▶ 逐步播放</button>
+<button type="button" id="prev">上一页</button>
+<button type="button" id="next">下一页</button>
+<button type="button" id="reset">重置</button>
+<div class="seek"><label for="progress">进度</label><input id="progress" type="range" min="0" max="5" value="0" step="1"><span class="counter" id="counter"></span></div>
+</div>
+<p class="hint">每步停留 6 秒，可随时暂停、逐页查看或拖动进度。键盘：← / → 切换，Home / End 跳到首尾。</p>
+</section>
+<aside class="takeaway"><strong>看第 7 条：B 的答案在库里，却不在前 6 条里。</strong><p>实际排查时，先确认资料已入库且条件正确，再尝试按型号分别检索，并核对每个子问题的证据。调大 K 是一种尝试，不是完整性保证。</p></aside>
+<footer>简化假设：文档已入库，查询和排名固定；取前 K 条，不额外建模近似搜索、过滤或上下文截断。相似度仅用于此示例排序，不是答案正确率。本文件不加载外部资源，也不发起网络请求。</footer>
+<noscript><p>分步控件需要浏览器允许本地 JavaScript。核心结论：B 的周期证据排第 7，取前 3 条或前 6 条都会漏掉它；增大 K 不保证找全证据。</p></noscript>
+</main>
+<script>
+'use strict';
+const docs = [
+ {title:'A 型号 · 维护说明',desc:'周期：每 6 个月一次',score:'.93'},
+ {title:'A 型号 · 保养问答',desc:'重复说明 A 的 6 个月周期',score:'.90'},
+ {title:'A 型号 · 例行维护指南',desc:'仍然是 A 的周期证据',score:'.87'},
+ {title:'通用维护规范',desc:'清洁和检查流程，无型号周期',score:'.84'},
+ {title:'B 型号 · 产品概览',desc:'有 B 的名称，没有维护周期',score:'.81'},
+ {title:'B 型号 · 安全操作',desc:'有 B 的名称，没有维护周期',score:'.78'},
+ {title:'B 型号 · 年度点检表',desc:'B 的周期证据：每 12 个月一次',score:'.73'},
+ {title:'B 型号 · 配件目录',desc:'零件清单，没有维护周期',score:'.66'}
+];
+const steps = [
+ {short:'明确目标',title:'需要两份证据：A 的周期 + B 的周期',body:'答案有两个部分。拿到很多 A 的相关材料，并不能替代 B 的周期证据；文档是否提到 B，也不同于是否回答了周期。',k:0,resultTitle:'先明确什么才算“答全”',resultBody:'这个示例只有两个待回答项：A 多久维护一次，B 多久维护一次。'},
+ {short:'查看排名',title:'相似度排名不保证覆盖每个子问题',body:'这里用一组模拟排名：A 的三份资料靠前；B 的周期写在“年度点检表”里，排第 7。实际排名由检索模型和文本等因素决定，标题只是帮助理解的示例。',k:0,mark:true,resultTitle:'相关程度 ≠ 答案覆盖',resultBody:'高相似度条目可以重复讲同一件事；更靠后的条目却可能是另一个子问题唯一需要的证据。'},
+ {short:'取前 3 条',title:'K = 3：三条都在回答 A',body:'top-K 的意思是取排名前 K 条。K=3 时，模型收到第 1–3 条，能找到 A 的 6 个月周期；第 7 条尚未进入上下文，B 的周期仍没有依据。',k:3,resultTitle:'检索结果：A 有证据，B 缺证据',resultBody:'合适的回答应说明 B 的周期证据不足，而不能把 A 的周期套给 B。'},
+ {short:'增加到 6',title:'K = 6：多了三条，仍没有 B 的周期',body:'橙色的第 4–6 条是新加入的材料。其中两条提到了 B，但没有写维护周期。B 的周期证据仍排第 7，所以把 K 从 3 加到 6 还是会漏。',k:6,resultTitle:'条目变多，答案覆盖没有增加',resultBody:'K 改变的是截取位置，不会自动按型号分配名额，也不会让无关段落补出缺失的周期。'},
+ {short:'找到缺口',title:'缺口就在截取线下面：第 7 条',body:'紫色条目明确写了 B 每 12 个月维护一次。它在这份资料库里，但没有进入前 6 条。演示页能展示它帮助你找原因，模型此时并没有收到它。',k:6,mark:true,resultTitle:'“资料里有”不等于“模型看到了”',resultBody:'拿到 B 的名称不够，必须拿到 B 的周期及其适用条件。当前上下文依然不能支持 B 的周期答案。'},
+ {short:'验证与边界',title:'本例 K = 7 才补上 B，但这不是通用保证',body:'保持排名不变，K=7 纳入第 7 条后，B 的周期证据才到位。真实系统还可能遇到资料未入库、过滤错误或证据被切断；继续增大 K 不能解决这些问题。',k:7,mark:true,resultTitle:'本例的两个子问题都有证据了',resultBody:'证据到位后，仍要检查型号、适用条件和最终表述。可以尝试按 A、B 分别检索，再逐项核对证据。'}
+];
+let current=0, timer=null;
+const $=id=>document.getElementById(id);
+const stepNav=document.querySelector('.steps');
+steps.forEach((step,index)=>{const b=document.createElement('button');b.type='button';b.className='step-button';b.textContent=`${index+1} ${step.short}`;b.addEventListener('click',()=>go(index));stepNav.appendChild(b);});
+function stop(){if(timer!==null){clearInterval(timer);timer=null;}$('play').textContent='▶ 逐步播放';$('play').setAttribute('aria-pressed','false');}
+function render(){
+ const s=steps[current];
+ $('step-label').textContent=`第 ${current+1} 步 / 共 ${steps.length} 步`;
+ $('step-title').textContent=s.title;$('step-body').textContent=s.body;
+ $('k-badge').textContent=s.k?`K = ${s.k}`:'尚未截取';
+ $('rows').replaceChildren();
+ docs.forEach((doc,index)=>{
+  const rank=index+1,selected=rank<=s.k,newly=s.k===6&&rank>=4&&rank<=6,target=s.mark&&rank===7;
+  const row=document.createElement('div');row.className='row'+(selected?' selected':'')+(newly?' newly':'')+(target?' target':'')+(rank===s.k?' cutoff':'');row.setAttribute('role','listitem');row.dataset.rank=rank;row.dataset.selected=String(selected);
+  if(rank===s.k)row.dataset.cutoff=`只取前 ${s.k} 条 ↑`;
+  const number=document.createElement('span');number.className='rank';number.textContent=rank;
+  const content=document.createElement('div'),title=document.createElement('div'),desc=document.createElement('div');title.className='doc-title';title.textContent=doc.title;desc.className='doc-desc';desc.textContent=doc.desc;content.append(title,desc);
+  const score=document.createElement('span');score.className='score';score.textContent=`0${doc.score}`;
+  const state=document.createElement('span');state.className='status';state.textContent=!s.k?'待截取':newly?'新增入选':selected?'已入选':target?'关键·未入选':'未入选';
+  row.append(number,content,score,state);$('rows').appendChild(row);
+ });
+ const started=s.k>0,hasB=s.k>=7;
+ $('card-a').className='evidence-card'+(started?' found':'');$('card-b').className='evidence-card'+(started?(hasB?' found':' missing'):'');
+ $('state-a').textContent=started?'证据已入选':'待检索';$('value-a').textContent=started?'每 6 个月':'？';$('desc-a').textContent=started?'来源：第 1–3 条中的 A 型号周期说明。':'需要 A 型号的维护周期证据。';
+ $('state-b').textContent=started?(hasB?'证据已入选':'周期证据未入选'):'待检索';$('value-b').textContent=started?(hasB?'每 12 个月':'仍缺依据'):'？';$('desc-b').textContent=started?(hasB?'来源：第 7 条《B 型号 · 年度点检表》。':'第 7 条还在截取线之外，不能据此作答。'):'需要 B 型号的维护周期证据。';
+ $('result-title').textContent=s.resultTitle;$('result-body').textContent=s.resultBody;
+ $('progress').value=current;$('progress').setAttribute('aria-valuetext',`第 ${current+1} 步：${s.short}`);$('counter').textContent=`${current+1} / ${steps.length}`;
+ $('prev').disabled=current===0;$('next').disabled=current===steps.length-1;
+ [...stepNav.children].forEach((b,i)=>{if(i===current)b.setAttribute('aria-current','step');else b.removeAttribute('aria-current');});
+}
+function go(index){stop();current=Math.max(0,Math.min(steps.length-1,index));render();}
+$('prev').addEventListener('click',()=>go(current-1));$('next').addEventListener('click',()=>go(current+1));$('reset').addEventListener('click',()=>go(0));$('progress').addEventListener('input',e=>go(Number(e.target.value)));
+$('play').addEventListener('click',()=>{
+ if(timer!==null){stop();return;}
+ if(current===steps.length-1){current=0;render();}
+ $('play').textContent='❚❚ 暂停';$('play').setAttribute('aria-pressed','true');
+ timer=setInterval(()=>{current++;render();if(current===steps.length-1)stop();},6000);
+});
+document.addEventListener('keydown',e=>{if(e.target instanceof HTMLInputElement||e.altKey||e.ctrlKey||e.metaKey)return;if(e.key==='ArrowRight'){e.preventDefault();go(current+1);}if(e.key==='ArrowLeft'){e.preventDefault();go(current-1);}if(e.key==='Home'){e.preventDefault();go(0);}if(e.key==='End'){e.preventDefault();go(steps.length-1);}});
+document.addEventListener('visibilitychange',()=>{if(document.hidden)stop();});
+render();
+</script>
+</body>
+</html>

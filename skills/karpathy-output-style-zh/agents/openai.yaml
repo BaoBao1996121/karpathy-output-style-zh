@@ -1,0 +1,4 @@
+interface:
+  display_name: "Karpathy Output · 中文讲解与可视化"
+  short_description: "用简单中文讲清因果与边界，按需用图解、交互和动画帮助理解"
+  default_prompt: "用 $karpathy-output-style-zh 解释这个概念；先给结论，再用同一个例子说明输入、过程和输出。"

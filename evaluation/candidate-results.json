@@ -1,0 +1,75 @@
+{
+  "label": "Illustrative manually instructed smoke tests; not automatic-trigger or general-superiority evidence",
+  "skill_loading": {
+    "method": "Read the complete SKILL.md with a local cat command, then followed its instructions for these three requests.",
+    "path_at_read": "Initial working name: clear-visual-explanations/SKILL.md (renamed for publication).",
+    "read_time_utc": "2026-10-05T23:47:03Z",
+    "note": "The package may subsequently be renamed to karpathy-output-style-zh. This run used the behavior content read at the original path."
+  },
+  "examples": [
+    {
+      "id": 1,
+      "prompt": "用三句话解释为什么召回率高，最终答案仍可能错。",
+      "answer": "召回率高，只说明找回了大部分相关材料，不代表每条结论需要的证据都已找到。即使证据齐全，模型也可能混淆型号、忽略适用条件，或误读原文。因此，最终答案仍需要核对证据及其对应关系。",
+      "checks_passed": [
+        "Exactly three Chinese sentences.",
+        "Distinguishes retrieval coverage from answer correctness.",
+        "Preserves missing-evidence and evidence-use failure modes."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "可视化讲一下：为什么top-k从3加到6，还是可能漏掉B型号的维护周期？给我能本地打开、逐步播放的小HTML，不要联网，不要发布。",
+      "answer": "看第 7 条：B 的周期证据在库里，却不在前 6 条里。K 从 3 加到 6 只会多取三条，不能保证补上 B 的证据。",
+      "artifact": "../examples/top-k/top-k-maintenance.html",
+      "steps": [
+        "Define A and B evidence needs",
+        "Show fixed simulated ranking",
+        "K=3 selects A evidence only",
+        "K=6 adds three rows without B interval",
+        "Highlight missing B evidence at rank7",
+        "K=7 includes B, with limitations"
+      ],
+      "controls": [
+        "Play/pause",
+        "Previous/next",
+        "Reset",
+        "Step buttons",
+        "Range seek",
+        "Arrow/Home/End keyboard shortcuts"
+      ],
+      "size_bytes": 18607,
+      "sha256": "5f4e65ba9e8b0cf1b60f3ee14040c4165dc358ce0271aec8ad024258d6252093"
+    },
+    {
+      "id": 3,
+      "prompt": "把“向量检索能保证找到所有正确答案，所以只要调大K就不会漏答”改得简短准确。",
+      "answer": "向量检索不保证找全相关证据；增大 K 可能减少漏检，但不能保证不漏答。",
+      "checks_passed": [
+        "Removes the false completeness guarantee.",
+        "States that increasing K may help, without promising no omissions.",
+        "Does not create an unnecessary visual artifact."
+      ]
+    }
+  ],
+  "verification": {
+    "passed": [
+      "54 offline JavaScript/HTML assertions via node check-example.cjs using a minimal DOM stub: all six states, fixed eight-row dataset, K=3/6/7 selection counts, evidence outputs, manual controls, playback/pause/end/restart, keyboard controls, visibility pause, no network APIs/URLs, CSP and accessibility/responsive hooks.",
+      "lxml HTML parse and structural checks: unique IDs, one inline script, no source/link/form URLs, zh-CN language, labeled progress range."
+    ],
+    "blocked": [
+      "A real Chromium launch failed because the evaluation environment denied socket creation. No browser screenshots or visual QA completed.",
+      "A second browser attempt could not open the local HTML because organizational policy blocked that file URL. The restriction was respected."
+    ],
+    "not_run": [
+      "Real-browser interaction, desktop/narrow-screen visual inspection, and actual screen-reader testing.",
+      "Automatic skill discovery/triggering or a matched baseline comparison."
+    ],
+    "limitations": [
+      "DOM-stub tests do not establish browser rendering or full accessibility correctness.",
+      "All names, ranks, scores and maintenance intervals are illustrative. They are not real product-maintenance advice.",
+      "Fixed ranking and query; approximate search, filtering, chunking and context truncation are not modeled.",
+      "Showing all rows to the viewer is explanatory; the model in the example receives only selected rows."
+    ]
+  }
+}
