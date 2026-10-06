@@ -1,0 +1,5 @@
+__pycache__/
+*.pyc
+demo/decoded-frames/
+demo/verification-frames/
+.DS_Store
